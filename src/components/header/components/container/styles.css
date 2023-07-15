@@ -1,0 +1,32 @@
+@import "../../../../colors.css";
+.wrapper {
+  max-width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.username-div {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  padding: 5px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.flex {
+  display: flex;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.blue {
+  color: var(--color-primary);
+}

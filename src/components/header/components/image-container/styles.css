@@ -1,0 +1,22 @@
+.image-background {
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.35);
+  background-blend-mode: multiply;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
+  color: white;
+}
+
+.display {
+  font-size: 32px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+
+.greetings {
+  font-size: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
