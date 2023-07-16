@@ -1,7 +1,7 @@
 import { useCallback, useState, useEffect } from "react";
 import "./styles.css";
 
-const ImageContainer = ({ username, display }) => {
+const ImageContainer = ({ username, title }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/images/mountain_background.png)`,
     backgroundSize: "cover",
@@ -32,9 +32,9 @@ const ImageContainer = ({ username, display }) => {
   return (
     <div className="image-background" style={backgroundImageStyle}>
       <div className="display">
-        {display === "accounts"
+        {title === "accounts"
           ? "Accounts Summary"
-          : display === "moveMoney"
+          : title === "moveMoney"
           ? "Move Money"
           : "Profile & Account Settings"}
       </div>

@@ -1,0 +1,17 @@
+@import "../../../../colors.css";
+
+.move-money-flex {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.move-money-flex > * {
+  border: 3px solid var(--color-primary);
+}
+
+.move-money-flex > *:hover {
+  cursor: pointer;
+  border: 3px solid var(--color-secondary);
+}

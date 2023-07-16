@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import ImageContainer from "../image-container";
 
-const Navigation = () => {
-  const [display, setDisplay] = useState("accounts");
+const Navigation = ({ title }) => {
+  const navigate = useNavigate();
+
   const [date, setDate] = useState("");
-  const [activeDisplay, setActiveDisplay] = useState("accounts");
 
   const displays = [
     { key: "accounts", value: "Accounts Summary" },
@@ -13,9 +14,9 @@ const Navigation = () => {
     { key: "profileSettings", value: "Profile & Account Settings" },
   ];
 
-  const handleClick = (value) => {
-    setDisplay(value);
-    setActiveDisplay(value);
+  const handleClick = (key) => {
+    const navigateTo = key === "accounts" ? "" : key;
+    navigate("/" + navigateTo);
   };
 
   const getFormattedDate = useCallback(() => {
@@ -41,7 +42,7 @@ const Navigation = () => {
           {displays.map((element) => (
             <span
               key={element.key}
-              className={activeDisplay === element.key ? "active" : "nav"}
+              className={title === element.key ? "active" : "nav"}
               onClick={() => handleClick(element.key)}
             >
               {element.value}
@@ -49,7 +50,7 @@ const Navigation = () => {
           ))}
         </div>
       </div>
-      <ImageContainer display={display} />
+      <ImageContainer title={title} />
     </>
   );
 };

@@ -15,16 +15,8 @@
   padding: 5px;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-.flex {
+.header-flex {
   display: flex;
-}
-
-.icon {
-  margin-right: 5px;
 }
 
 .blue {
