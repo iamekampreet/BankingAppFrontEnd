@@ -1,7 +1,20 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
 import "./styles.css";
+import { useLocation } from "react-router-dom";
+
+const keyLabelMap = {
+  "/": "Accounts Summary",
+  "/move-money/transfer-between-account": "Transfer Between My Accounts",
+  "/move-money/pay-bill": "Pay a Bill",
+  "/move-money-interac-transfer": "Send Money with Interac e-Transfer",
+  "/move-money/split-bill": "Split with Friends",
+  "/settings": "Profile & Account Settings",
+};
 
 const ImageContainer = ({ username, title }) => {
+  const location = useLocation();
+  console.log(location);
+
   const backgroundImageStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/images/mountain_background.png)`,
     backgroundSize: "cover",
@@ -31,13 +44,7 @@ const ImageContainer = ({ username, title }) => {
 
   return (
     <div className="image-background" style={backgroundImageStyle}>
-      <div className="display">
-        {title === "accounts"
-          ? "Accounts Summary"
-          : title === "moveMoney"
-          ? "Move Money"
-          : "Profile & Account Settings"}
-      </div>
+      <div className="display">{keyLabelMap[location.pathname]}</div>
       <div className="greetings">
         Good {dayTime} {username ? `, ${username}` : ""}
       </div>

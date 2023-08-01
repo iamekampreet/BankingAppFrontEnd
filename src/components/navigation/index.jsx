@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
-import ImageContainer from "../image-container";
+import ImageContainer from "../../scene/root-page/section/image-container";
 
 const Navigation = ({ title }) => {
   const navigate = useNavigate();

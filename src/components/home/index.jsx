@@ -1,4 +1,4 @@
-import Header from "../header";
+import Header from "../../scene/root-page/section/header";
 
 const Home = () => {
   return (
