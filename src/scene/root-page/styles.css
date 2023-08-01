@@ -1,0 +1,28 @@
+.root-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 110px 180px 1fr;
+  grid-template-areas: 
+    "header header"
+    "image image"
+    "nav main";
+}
+
+header {
+  width: 100%;
+  grid-area: header;
+}
+
+.image-background {
+  grid-area: image;
+}
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+}
+

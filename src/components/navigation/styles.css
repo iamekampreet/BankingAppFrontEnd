@@ -1,6 +1,4 @@
-@import "../../../../colors.css";
-
-.line1 {
+/* .line1 {
   background-color: var(--color-primary);
   height: 2em;
 }
@@ -11,7 +9,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
+} */
 
 .line2 div {
   max-width: 80%;
@@ -27,11 +25,6 @@
 
 .line2 div span {
   margin-right: 30px;
-  margin-top: 5px;
-}
-
-.date {
-  color: white;
   margin-top: 5px;
 }
 
