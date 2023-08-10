@@ -1,5 +1,7 @@
+import SplitBillScene from "../scene/split-bill";
+
 const SplitBill = () => {
-  return <h1>Split Bill section</h1>;
+  return <SplitBillScene />;
 };
 
 export default SplitBill;

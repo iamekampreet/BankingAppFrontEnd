@@ -4,10 +4,16 @@ import MainMenu from "./section/main-menu/MainMenu";
 
 import "./styles.css";
 import ImageContainer from "./section/image-container";
+import { useContext } from "react";
+import { AppConfigContext } from "antd/es/app/context";
+import { MyAppContext } from "../../provider/MyAppProvider";
 
 const RootPageScene = () => {
+  const { contextHolder } = useContext(MyAppContext);
+
   return (
     <div className="root-container">
+      {contextHolder}
       <Header />
       <ImageContainer className="image" title="navigation" />
       <MainMenu />
