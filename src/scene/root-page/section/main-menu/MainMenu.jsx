@@ -12,7 +12,24 @@ const items = [
         label: "Transfer Between My Accounts",
         key: "/move-money/transfer-between-account",
       },
-      { label: "Pay a Bill", key: "/move-money/pay-bill" },
+      {
+        label: "Pay a Bill",
+        key: "paybill-menu",
+        children: [
+          {
+            label: "Pay a Bill",
+            key: "/move-money/pay-bill",
+          },
+          {
+            label: "Add payee",
+            key: "/move-money/add-payee",
+          },
+          {
+            label: "Upcoming payments",
+            key: "/move-money/upcoming-payments",
+          },
+        ],
+      },
       {
         label: "Send Money with Interac e-Transfer",
         key: "/move-money-interac-transfer",
@@ -30,8 +47,6 @@ const MainMenu = () => {
   const navigate = useNavigate();
 
   const onMenuItemClick = ({ key }) => {
-    // console.log(`clicked ${key}`);
-    // setCurrentPageName(keyLabelMap[key]);
     navigate(key);
   };
 

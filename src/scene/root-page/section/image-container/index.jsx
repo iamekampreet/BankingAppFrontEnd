@@ -6,6 +6,8 @@ const keyLabelMap = {
   "/": "Accounts Summary",
   "/move-money/transfer-between-account": "Transfer Between My Accounts",
   "/move-money/pay-bill": "Pay a Bill",
+  "/move-money/add-payee": "Add payee",
+  "/move-money/upcoming-payments": "Upcoming payments",
   "/move-money-interac-transfer": "Send Money with Interac e-Transfer",
   "/move-money/split-bill": "Split with Friends",
   "/settings": "Profile & Account Settings",
@@ -13,7 +15,6 @@ const keyLabelMap = {
 
 const ImageContainer = ({ username, title }) => {
   const location = useLocation();
-  console.log(location);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/images/mountain_background.png)`,

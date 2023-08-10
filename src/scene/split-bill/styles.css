@@ -1,0 +1,17 @@
+.split-bill-form {
+  margin: 24px auto;
+}
+
+.ant-form-large.split-bill-form .ant-form-item-label  label {
+  font-size: 20px;
+  height: auto;
+}
+
+hr {
+  background-color: lightgray;
+  height: 2px;
+  border: none;
+}
+
+
+

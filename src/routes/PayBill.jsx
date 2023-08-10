@@ -1,9 +1,7 @@
+import PayBillScene from "../scene/pay-bill";
+
 const PayBill = () => {
-  return (
-    <>
-      <h1>Pay Bill section</h1>
-    </>
-  );
+  return <PayBillScene />;
 };
 
 export default PayBill;

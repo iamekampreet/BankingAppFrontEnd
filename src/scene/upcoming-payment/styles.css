@@ -1,0 +1,12 @@
+.upcoming-payment-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.upcoming-payment-container h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-top: 8px;
+}

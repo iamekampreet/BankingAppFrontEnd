@@ -1,0 +1,20 @@
+.upcoming-row-container {
+  display: flex;
+  background-color: lightgray;
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upcoming-row-container > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.upcoming-row-container p:first-child {
+  margin-bottom: 8px;
+}
+
+.upcoming-row-container p {
+  margin-bottom: 0px;
+}

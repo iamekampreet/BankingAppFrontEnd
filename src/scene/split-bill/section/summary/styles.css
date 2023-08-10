@@ -1,0 +1,33 @@
+.summary-container {
+  width: 800px;
+  margin: 20px auto;
+}
+
+.summary-request-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-request-amount h2 {
+  font-size: 28px;
+}
+
+.summary-request-amount p {
+  font-size: 40px;
+}
+
+.split-summary-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.summary-container button {
+  min-width: 200px;
+}
+
+.summary-container button:first-child {
+  margin-right: 32px;
+}
+
