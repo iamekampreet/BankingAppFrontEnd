@@ -1,0 +1,80 @@
+#containerBig {
+  background-image: url("https://secure.royalbank.com/statics/login-service-ui/signin-landing-branding.b8b3e1443ca549d81fdb.jpg");
+  background-repeat: no-repeat;
+  background-position: -50% 0px;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  /* animation: 4s ease-out slideInViewport 1s both; */
+}
+
+#logoContainer {
+  height: 100vh;
+  width: 50vw;
+  position: fixed;
+  text-align: center;
+  padding-top: 40vh;
+  animation: slideInViewportLogoContainer 2s ease-out 1s both;
+}
+
+#logoContainer > h1 {
+  padding-top: 15px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+#logoContainer > h2 {
+  color: white;
+  font-size: 1rem;
+}
+
+#inputContainer {
+  height: 100vh;
+  width: 50vw;
+  position: fixed;
+  right: 0px;
+  animation: slideInViewportInputContainer 2s ease-out 1s both;
+  background-color: white;
+  text-align: center;
+}
+
+@keyframes slideInViewport {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes slideInViewportLogoContainer {
+  from {
+    transform: translateX(calc(100vw - 150%));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInViewportInputContainer {
+  from {
+    transform: translateX(calc(100vw - 100%));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+#inputContainer > form {
+  margin: 20vh 13vw 0;
+}
+
+#inputContainer > form > p {
+  color: red;
+  font-size: 1rem;
+}
+
+#signupLinkLoginPage {
+  text-decoration: none;
+  color: #0051a5;
+}

@@ -1,0 +1,10 @@
+.customButton {
+  width: 100%;
+  height: 50px;
+  margin: 15px;
+  display: block;
+  border-radius: 0;
+  border: 0;
+  background-color: #0051a5;
+  color: white;
+}
