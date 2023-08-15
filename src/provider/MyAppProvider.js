@@ -5,14 +5,16 @@ export const MyAppContext = createContext("");
 
 export const MyAppContextProvider = ({ children }) => {
   const [messageApi, contextHolder] = message.useMessage();
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGQzZmQyNzA0OTVmY2QyMjdlNGEzYjAiLCJlbWFpbCI6InNhbnRvc2guZGhha2FsMDdAZ21haWwuY29tIiwiaWF0IjoxNjkxNjI1MzkzLCJleHAiOjE2OTE2Mjg5OTN9.tlRRc1MfbrHqOpRlc85h1aKkb0iJHfEvV1xIo-N1ZwQ";
-  const loggedInUser = {
-    _id: "64d3fd270495fcd227e4a3b0",
+  const token_user1 =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MmEiLCJlbWFpbCI6InNhbnRvc2guZGhha2FsMDdAZ21haWwuY29tIiwiaWF0IjoxNjkyMTM5OTM0LCJleHAiOjE2OTIxNDM1MzR9.wRnWwOLyjyFJD6QMkdSbbAAdi6RCAnC3ZMUz8pSOLbk";
+  const token_user2 =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MzQiLCJlbWFpbCI6ImFsbGEuZ25hdGtpdkBnbWFpbC5jb20iLCJpYXQiOjE2OTIxNDAxNzgsImV4cCI6MTY5MjE0Mzc3OH0.KM4wRDZ43-ipjYO8FCJDACTZatwSMBNENOWOFtZJoHo";
+  const user1 = {
+    _id: "64dbe128847dffa3fe50542a",
     firstName: "Santosh",
     lastName: "Dhakal",
     email: "santosh.dhakal07@gmail.com",
-    password: "$2a$12$KsBDPbpV.DD1S8i2xw4ZUu0lEdv3dRx89.DD0IaE3chrMQSSOAxka",
+    password: "$2a$12$7non.KKK2CICgRCUs04C9.qJ0L0Gh1aVGSEGHa20etoViqBzmgYKy",
     address: "1234 Bloor St, Mississauga, ON, Canada",
     phone: "+16478365807",
     sinNumber: "123456789",
@@ -23,15 +25,15 @@ export const MyAppContextProvider = ({ children }) => {
         accountNumber: 1,
         accountType: 1,
         status: 0,
-        accountBalance: 18000,
-        _id: "64d3fd270495fcd227e4a3b1",
+        accountBalance: 20000,
+        _id: "64dbe128847dffa3fe50542b",
       },
       {
         accountNumber: 2,
         accountType: 0,
         status: 0,
         accountBalance: 100000.43,
-        _id: "64d3fd270495fcd227e4a3b2",
+        _id: "64dbe128847dffa3fe50542c",
       },
     ],
     cards: [
@@ -40,48 +42,100 @@ export const MyAppContextProvider = ({ children }) => {
         cardNumber: "1111222233334444",
         expiryDate: "2025-02-01T05:00:00.000Z",
         securityCode:
-          "$2a$12$t14Zv.W06ZRQsblEWtDwHuDSbakx0GCZcqWzlWzyGi6b5mU7D/g7G",
+          "$2a$12$5TfDb1DCOy5axzoBLvieC.hMf8kzp1ZxK8y5r7lvHHsQMrFUDB16W",
         status: 0,
-        _id: "64d3fd270495fcd227e4a3b3",
+        _id: "64dbe128847dffa3fe50542d",
       },
       {
         cardType: 1,
         cardNumber: "0000111122223333",
         expiryDate: "2025-02-01T05:00:00.000Z",
         securityCode:
-          "$2a$12$t14Zv.W06ZRQsblEWtDwHuDSbakx0GCZcqWzlWzyGi6b5mU7D/g7G",
+          "$2a$12$5TfDb1DCOy5axzoBLvieC.hMf8kzp1ZxK8y5r7lvHHsQMrFUDB16W",
         maxLimit: 1000,
         accountBalance: 300,
         status: 0,
-        _id: "64d3fd270495fcd227e4a3b4",
+        _id: "64dbe128847dffa3fe50542e",
       },
     ],
     payee: [
       {
-        payeeId: "64d3fd270495fcd227e4a3c4",
+        payeeId: "64dbe128847dffa3fe50543e",
         displayName: "CRA(Revenue) Tax Amount Owing",
         description: "CRA tax payments",
         accountNumber: 10,
-        _id: "64d3fd270495fcd227e4a3da",
+        _id: "64dbe128847dffa3fe505454",
       },
       {
-        payeeId: "64d3fd270495fcd227e4a3bf",
+        payeeId: "64dbe128847dffa3fe505439",
         displayName: "Humber College",
         description: "Tuition Payment",
         accountNumber: 8,
-        _id: "64d3fd270495fcd227e4a3db",
+        _id: "64dbe128847dffa3fe505455",
       },
     ],
+    __v: 0,
+  };
+  const user2 = {
+    _id: "64dbe128847dffa3fe505434",
+    firstName: "Alla-Anastasiia",
+    lastName: "Gnatkiv",
+    email: "alla.gnatkiv@gmail.com",
+    password: "$2a$12$7non.KKK2CICgRCUs04C9.qJ0L0Gh1aVGSEGHa20etoViqBzmgYKy",
+    address: "1234 Lakeshore Rd E, Mississauga, ON, Canada",
+    phone: "+14372611240",
+    sinNumber: "123456789",
+    accountType: 0,
+    displayName: "Alla-Anastasiia Gnatkiv",
+    accounts: [
+      {
+        accountNumber: 5,
+        accountType: 1,
+        status: 0,
+        accountBalance: 654356.43,
+        _id: "64dbe128847dffa3fe505435",
+      },
+      {
+        accountNumber: 6,
+        accountType: 0,
+        status: 0,
+        accountBalance: 345324.23,
+        _id: "64dbe128847dffa3fe505436",
+      },
+    ],
+    cards: [
+      {
+        cardType: 0,
+        cardNumber: "2222333344445555",
+        expiryDate: "2025-02-01T05:00:00.000Z",
+        securityCode:
+          "$2a$12$5TfDb1DCOy5axzoBLvieC.hMf8kzp1ZxK8y5r7lvHHsQMrFUDB16W",
+        status: 0,
+        _id: "64dbe128847dffa3fe505437",
+      },
+      {
+        cardType: 1,
+        cardNumber: "3333444455556666",
+        expiryDate: "2025-02-01T05:00:00.000Z",
+        securityCode:
+          "$2a$12$5TfDb1DCOy5axzoBLvieC.hMf8kzp1ZxK8y5r7lvHHsQMrFUDB16W",
+        maxLimit: 1000,
+        accountBalance: 300,
+        status: 0,
+        _id: "64dbe128847dffa3fe505438",
+      },
+    ],
+    payee: [],
     __v: 0,
   };
 
   return (
     <MyAppContext.Provider
       value={{
-        user: loggedInUser,
+        user: user2,
         messageApi: messageApi,
         contextHolder: contextHolder,
-        token: token,
+        token: token_user2,
       }}
     >
       {children}

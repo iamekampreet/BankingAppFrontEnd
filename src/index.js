@@ -13,6 +13,8 @@ import InteracTransfer from "./routes/InteracTransfer";
 import Settings from "./routes/Settings";
 import AddPayee from "./routes/AddPayee";
 import UpcomingPayments from "./routes/UpcomingPayments";
+import SplitHistory from "./routes/SplitHistory";
+import RequestedSplit from "./routes/RequestedSplit";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -44,6 +46,14 @@ root.render(
                 element={<InteracTransfer />}
               />
               <Route path="/move-money/split-bill" element={<SplitBill />} />
+              <Route
+                path="/move-money/split-request-history"
+                element={<SplitHistory />}
+              />
+              <Route
+                path="move-money/requested-split"
+                element={<RequestedSplit />}
+              />
               <Route path="/settings" element={<Settings />} />
             </Route>
           </Routes>

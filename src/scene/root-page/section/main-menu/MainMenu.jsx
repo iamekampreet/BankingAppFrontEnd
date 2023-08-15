@@ -34,7 +34,24 @@ const items = [
         label: "Send Money with Interac e-Transfer",
         key: "/move-money-interac-transfer",
       },
-      { label: "Split with Friends", key: "/move-money/split-bill" },
+      {
+        label: "Split Bill",
+        key: "split-bill",
+        children: [
+          {
+            label: "Split with Friends",
+            key: "/move-money/split-bill",
+          },
+          {
+            label: "Split Requests Histroy",
+            key: "/move-money/split-request-history",
+          },
+          {
+            label: "Requested Split",
+            key: "/move-money/requested-split",
+          },
+        ],
+      },
     ],
   },
   {

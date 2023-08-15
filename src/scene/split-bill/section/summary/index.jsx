@@ -58,7 +58,7 @@ const SplitBillSummary = ({ splitInfo, setCurrentSection }) => {
       <div className="friends-list-container">
         {splitInfo?.friendInfos?.map((friend) => (
           <FriendInfoSummary
-            key={friend.phone}
+            key={friend.phoneNumber}
             {...friend}
             splitAmount={perPersonSplit}
           />
