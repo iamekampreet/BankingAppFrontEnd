@@ -1,0 +1,9 @@
+.split-history-container {
+  width: 80%;
+  max-width: 80%;
+  margin: 24px auto;
+}
+
+.split-history-container h2 {
+  text-align: center;
+}
