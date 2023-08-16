@@ -1,7 +1,12 @@
-import RootPageScene from "../scene/root-page"
+import { useContext } from "react";
+import RootPageScene from "../scene/root-page";
+import { MyAppContext } from "../provider/MyAppProvider";
+import HomePage from "../scene/home-page";
 
 const RootPage = () => {
-  return <RootPageScene />
-}
+  const { user } = useContext(MyAppContext);
 
-export default RootPage
+  return user ? <RootPageScene /> : <HomePage />;
+};
+
+export default RootPage;

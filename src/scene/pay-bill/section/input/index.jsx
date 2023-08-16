@@ -1,6 +1,4 @@
 import { Alert, Button, DatePicker, Form, Input, Select, Space } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import TextArea from "antd/es/input/TextArea";
 import { useContext, useState } from "react";
 import dayjs from "dayjs";
 
@@ -27,19 +25,17 @@ const PayBillInputSection = ({
   };
 
   const updateValues = (values) => {
+    console.log("New value", values);
     setPayBillInfo(values);
   };
-
-  // const onErrorAlertCloseHandler = () => {
-  //   setErrorDescription(null)
-  // }
 
   const disabledDate = (current) => {
     // Can not select days before today and today
     return current < dayjs().startOf("day");
   };
 
-  // console.log(`===${JSON.stringify(payBillInfo)}`);
+  console.log(`===!${JSON.stringify(payBillInfo)}`);
+  console.log(JSON.parse(payBillInfo?.from ?? `{}`));
 
   return (
     <>
@@ -60,7 +56,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="From"
           name="from"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={payBillInfo?.from}
           rules={[
             {
               required: true,
@@ -88,7 +84,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="To"
           name="to"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={payBillInfo?.to}
           rules={[
             {
               required: true,
@@ -127,6 +123,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Date"
           name="date"
+          initialValue={payBillInfo?.date}
           rules={[
             {
               required: true,
@@ -145,7 +142,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Frequency"
           name="frequency"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={payBillInfo?.frequency}
           rules={[
             {
               required: true,

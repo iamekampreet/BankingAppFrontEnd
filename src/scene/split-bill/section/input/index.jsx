@@ -29,10 +29,6 @@ const InputSection = ({ setCurrentSection, setSplitInfo, splitInfo }) => {
     setSplitInfo(values);
   };
 
-  // const onErrorAlertCloseHandler = () => {
-  //   setErrorDescription(null)
-  // }
-
   console.log(`===${JSON.stringify(splitInfo)}`);
 
   return (
