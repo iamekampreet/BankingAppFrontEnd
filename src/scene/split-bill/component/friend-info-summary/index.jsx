@@ -1,12 +1,12 @@
 import "./styles.css";
 
-const FriendInfoSummary = ({ name, phone, splitAmount }) => {
+const FriendInfoSummary = ({ name, phoneNumber, splitAmount }) => {
   return (
     <>
       <div className="friend-summary-container">
         <div>
           <p>{name}</p>
-          <p>{phone}</p>
+          <p>{phoneNumber}</p>
         </div>
         <p>{splitAmount}</p>
       </div>

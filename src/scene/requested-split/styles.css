@@ -1,0 +1,9 @@
+.requested-split-container {
+  width: 80%;
+  max-width: 80%;
+  margin: 32px auto;
+}
+
+.requested-split-container > h2 {
+  text-align: center;
+}

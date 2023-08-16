@@ -10,6 +10,8 @@ const keyLabelMap = {
   "/move-money/upcoming-payments": "Upcoming payments",
   "/move-money-interac-transfer": "Send Money with Interac e-Transfer",
   "/move-money/split-bill": "Split with Friends",
+  "/move-money/split-request-history": "Split History",
+  "/move-money/requested-split": "Requested Split",
   "/settings": "Profile & Account Settings",
 };
 
