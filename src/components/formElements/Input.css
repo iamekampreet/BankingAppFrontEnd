@@ -1,0 +1,19 @@
+.inputElement {
+  width: 100%;
+}
+
+.inputElement > label,
+.inputElement > input {
+  display: block;
+  margin: 15px;
+}
+
+.inputElement > label {
+  text-align: start;
+}
+
+.inputElement > input {
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+}

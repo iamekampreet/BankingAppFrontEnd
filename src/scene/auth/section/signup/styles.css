@@ -1,0 +1,10 @@
+#loginInstead {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #0051a5;
+}
+
+#loginInstead:hover {
+  color: darkblue;
+  cursor: pointer;
+}

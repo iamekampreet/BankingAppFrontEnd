@@ -6,6 +6,10 @@ export const getAccountLabel = (account) => {
     : `Unknown Account Label`;
 };
 
+export const getCardLabel = (card) => {
+  return card === 0 ? "DEBIT" : card === 1 ? "CREDIT" : "Unknown Card Label";
+};
+
 export const getFrequencyLabel = (frequency) => {
   return frequency === 0
     ? `Once`

@@ -15,8 +15,7 @@ import AddPayee from "./routes/AddPayee";
 import UpcomingPayments from "./routes/UpcomingPayments";
 import SplitHistory from "./routes/SplitHistory";
 import RequestedSplit from "./routes/RequestedSplit";
-import Login from "./scene/login";
-import Signup from "./scene/signup";
+import Auth from "./routes/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -58,8 +57,7 @@ root.render(
               />
               <Route path="/settings" element={<Settings />} />
             </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </BrowserRouter>
       </MyAppContextProvider>

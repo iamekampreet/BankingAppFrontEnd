@@ -1,9 +1,7 @@
+import AccountSummaryScene from "../scene/account-summary";
+
 const AccountSummary = () => {
-  return (
-    <>
-      <h1>Account Summary section</h1>
-    </>
-  );
+  return <AccountSummaryScene />;
 };
 
 export default AccountSummary;
