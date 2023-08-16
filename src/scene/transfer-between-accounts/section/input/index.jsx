@@ -8,9 +8,9 @@ import "./styles.css";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import { getAccountLabel } from "../../../../utils/utils";
 
-const PayBillInputSection = ({
-  payBillInfo,
-  setPayBillInfo,
+const TransferBetweenAccountsInputSection = ({
+  transferBetweenAccountsInfo,
+  setTransferBetweenAccountsInfo,
   setCurrentSection,
 }) => {
   const [errorDescription, setErrorDescription] = useState();
@@ -23,23 +23,17 @@ const PayBillInputSection = ({
     console.log(values);
 
     setCurrentSection(`summary`);
-    setPayBillInfo(values);
+    setTransferBetweenAccountsInfo(values);
   };
 
   const updateValues = (values) => {
-    setPayBillInfo(values);
+    setTransferBetweenAccountsInfo(values);
   };
-
-  // const onErrorAlertCloseHandler = () => {
-  //   setErrorDescription(null)
-  // }
 
   const disabledDate = (current) => {
     // Can not select days before today and today
     return current < dayjs().startOf("day");
   };
-
-  // console.log(`===${JSON.stringify(payBillInfo)}`);
 
   return (
     <>
@@ -60,7 +54,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="From"
           name="from"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -88,7 +82,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="To"
           name="to"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -98,15 +92,17 @@ const PayBillInputSection = ({
         >
           <Select
             showSearch
-            placeholder="To which payee?"
-            options={user.payee.map((payee) => {
+            placeholder="To which account?"
+            options={user.accounts.map((account) => {
+              const displayStr = `${getAccountLabel(account.accountType)} - (#${
+                account.accountNumber
+              })`;
               return {
                 value: JSON.stringify({
-                  payeeId: payee.payeeId,
-                  accountNumber: payee.accountNumber,
-                  displayName: payee.displayName,
-                }).trim(),
-                label: `${payee.displayName} - [${payee.description}]`,
+                  displayStr: displayStr,
+                  accountNumber: account.accountNumber,
+                }),
+                label: displayStr,
               };
             })}
           />
@@ -114,7 +110,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Amount"
           name="amount"
-          initialValue={payBillInfo?.amount}
+          initialValue={transferBetweenAccountsInfo?.amount}
           rules={[
             {
               required: true,
@@ -145,7 +141,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Frequency"
           name="frequency"
-          initialValue={payBillInfo?.accountNumber}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -173,4 +169,4 @@ const PayBillInputSection = ({
   );
 };
 
-export default PayBillInputSection;
+export default TransferBetweenAccountsInputSection;
