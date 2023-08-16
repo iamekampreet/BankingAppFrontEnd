@@ -8,8 +8,6 @@ import "./styles.css";
 const AccountSummaryScene = () => {
   const { user } = useContext(MyAppContext);
 
-  console.log(user);
-
   return (
     <div id="accountSummaryMainContainer">
       <h3 id="bankAccountsHeading">Bank Accounts:</h3>

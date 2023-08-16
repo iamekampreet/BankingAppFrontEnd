@@ -1,6 +1,7 @@
-import "./styles.css";
+import { useCallback, useContext } from "react";
+import { MyAppContext } from "../../../../provider/MyAppProvider";
 import Button from "../../../../components/button";
-import { useCallback } from "react";
+import "./styles.css";
 
 const Header = () => {
   const getFormattedDate = useCallback(() => {
@@ -10,6 +11,8 @@ const Header = () => {
     return formattedDate;
   }, []);
 
+  const { user } = useContext(MyAppContext);
+
   return (
     <>
       <header>
@@ -18,7 +21,7 @@ const Header = () => {
             <img
               src={process.env.PUBLIC_URL + "/images/rbc_emblem.png"}
               alt=""
-              width="100"
+              width="90"
               height="50"
             />
             <span className="blue bold">Royal Bank</span>
@@ -33,7 +36,7 @@ const Header = () => {
                 width="20"
                 height="20"
               />
-              <div>USER NAME FROM DB</div>
+              <div>{user.displayName}</div>
             </div>
             <Button color="secondary" title="Sign Out" icon="lock_icon.png" />
           </div>

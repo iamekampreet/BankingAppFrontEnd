@@ -130,6 +130,7 @@ export const MyAppContextProvider = ({ children }) => {
   };
 
   const [user, setUser] = useState(user1);
+  const [token, setToken] = useState(token_user1);
 
   return (
     <MyAppContext.Provider
@@ -137,7 +138,8 @@ export const MyAppContextProvider = ({ children }) => {
         user: user,
         messageApi: messageApi,
         contextHolder: contextHolder,
-        token: token_user1,
+        token: token,
+        setToken: setToken,
         updateUser: setUser,
       }}
     >

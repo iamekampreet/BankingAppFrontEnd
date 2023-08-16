@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { MyAppContext } from "../../../../provider/MyAppProvider";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
@@ -6,6 +7,8 @@ import Input from "../../../../components/formElements/Input";
 import Button from "../../../../components/formElements/Button";
 
 const LoginSection = (props) => {
+  const context = useContext(MyAppContext);
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -21,9 +24,6 @@ const LoginSection = (props) => {
 
   const loginFormSubmitHandler = async (event) => {
     event.preventDefault();
-
-    console.log(email);
-    console.log(password);
 
     try {
       const response = await fetch(
@@ -44,7 +44,8 @@ const LoginSection = (props) => {
         throw new Error(responseData.message);
       }
 
-      console.log(responseData);
+      context.setToken(responseData.token);
+      context.updateUser(responseData.user);
     } catch (err) {
       setError("Error: " + err.message);
       console.log(err);

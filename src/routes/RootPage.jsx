@@ -6,8 +6,7 @@ import HomePage from "../scene/home-page";
 const RootPage = () => {
   const { user } = useContext(MyAppContext);
 
-  // return user ? <RootPageScene /> : <HomePage />;
-  return <HomePage />;
+  return user ? <RootPageScene /> : <HomePage />;
 };
 
 export default RootPage;
