@@ -21,11 +21,11 @@ const SplitHistoryScene = () => {
           },
         }
       );
-      if (response.status === 200) {
-        const fetchedSplitHistoryInfo = await response.json();
-        setSplitHistoryInfo(fetchedSplitHistoryInfo);
+      const jsonResponse = await response.json();
+      if (response.ok) {
+        setSplitHistoryInfo(jsonResponse);
       } else if (response.status === 401) {
-        messageApi.info("jwt expired!");
+        messageApi.info(jsonResponse.message);
       }
     } catch (ex) {
       console.log("=====");

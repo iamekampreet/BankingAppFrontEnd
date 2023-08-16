@@ -20,11 +20,11 @@ const RequestedSplitScene = () => {
           },
         }
       );
-      if (response.status === 200) {
-        const requestedSplitsInfo = await response.json();
-        setRequestSplits(requestedSplitsInfo);
+      const jsonResponse = await response.json();
+      if (response.ok) {
+        setRequestSplits(jsonResponse);
       } else if (response.status === 401) {
-        messageApi.info("jwt expired!");
+        messageApi.info(jsonResponse.message);
       }
     } catch (ex) {
       console.log("=====");
@@ -53,12 +53,10 @@ const RequestedSplitScene = () => {
           },
         }
       );
-      if (response.status === 200) {
-        const statusMessage = await response.json();
-        messageApi.info(statusMessage.message);
-        fetchRequestedSplit();
-      } else if (response.status === 401) {
-        messageApi.info("jwt expired!");
+      const statusMessage = await response.json();
+      messageApi.info(statusMessage.message);
+      if (response.ok) {
+        await fetchRequestedSplit();
       }
     } catch (ex) {
       console.log("=====");
