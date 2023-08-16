@@ -36,7 +36,7 @@ const SplitBillSummary = ({ splitInfo, setCurrentSection }) => {
       });
       const message = await response.json();
       messageApi.info(message.message);
-      if (response.status === 200) {
+      if (response.ok) {
         navigate("/");
       }
     } catch (ex) {

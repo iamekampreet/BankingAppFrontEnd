@@ -2,10 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import UpcomingPaymentRow from "./components/upcoming-payment-row";
 import "./styles.css";
 import { MyAppContext } from "../../provider/MyAppProvider";
+import { Button, Modal } from "antd";
 
 const UpcomingPaymentsScene = () => {
   const [upcomingPayments, setUpcomingPayments] = useState();
-  const { token } = useContext(MyAppContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState();
+  const { token, messageApi } = useContext(MyAppContext);
 
   const fetchUpcomingPayments = async () => {
     const response = await fetch(`${process.env.REACT_APP_UPCOMING_PAYMENTS}`, {
@@ -14,17 +17,43 @@ const UpcomingPaymentsScene = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await response.json();
-    console.log(data);
-    setUpcomingPayments(data);
-    if (response.status) console.log();
+    const jsonResponse = await response.json();
+    if (response.ok) {
+      setUpcomingPayments(jsonResponse);
+    } else {
+      messageApi.info(jsonResponse.message);
+    }
+  };
+
+  const stopScheduledPayment = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_PAY_BILL_STOP_PAYMENTS}`,
+      {
+        method: `POST`,
+        body: JSON.stringify({
+          scheduledPaymentId: selectedPayment.scheduledPaymentId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const jsonResponse = await response.json();
+    messageApi.info(jsonResponse.message);
+    setIsModalOpen(false);
+    if (response.ok) {
+      await fetchUpcomingPayments();
+    }
   };
 
   useEffect(() => {
     fetchUpcomingPayments();
   }, []);
 
-  console.log(upcomingPayments);
+  const handleStopPaymentConfirm = () => {
+    stopScheduledPayment();
+  };
 
   return (
     <div className="upcoming-payment-container">
@@ -35,9 +64,40 @@ const UpcomingPaymentsScene = () => {
             payeeName={upcomingPayment.to.displayName}
             amount={upcomingPayment.amount}
             date={upcomingPayment.date}
+            scheduledPaymentId={upcomingPayment.scheduledPaymentId}
+            setSelectedPayment={setSelectedPayment}
+            setIsModalOpen={setIsModalOpen}
           />
         );
       })}
+      <Modal
+        open={isModalOpen}
+        title={`Stop payment to ${
+          selectedPayment?.payeeName ? selectedPayment.payeeName : ``
+        }?`}
+        onCancel={(e) => {
+          e.stopPropagation();
+          setIsModalOpen(false);
+        }}
+        footer={[
+          <Button
+            key="back"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsModalOpen(false);
+            }}
+          >
+            Go Back
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            onClick={handleStopPaymentConfirm}
+          >
+            Stop Payment
+          </Button>,
+        ]}
+      ></Modal>
     </div>
   );
 };

@@ -19,3 +19,14 @@
 .upcoming-row-container p {
   margin-bottom: 0px;
 }
+
+.upcoming-row-container > div:last-child {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+}
+
+.upcoming-row-container > div:last-child p {
+  margin-bottom: 0px;
+}
