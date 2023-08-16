@@ -1,14 +1,14 @@
 import { message } from "antd";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const MyAppContext = createContext("");
 
 export const MyAppContextProvider = ({ children }) => {
   const [messageApi, contextHolder] = message.useMessage();
   const token_user1 =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MmEiLCJlbWFpbCI6InNhbnRvc2guZGhha2FsMDdAZ21haWwuY29tIiwiaWF0IjoxNjkyMTM5OTM0LCJleHAiOjE2OTIxNDM1MzR9.wRnWwOLyjyFJD6QMkdSbbAAdi6RCAnC3ZMUz8pSOLbk";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MmEiLCJlbWFpbCI6InNhbnRvc2guZGhha2FsMDdAZ21haWwuY29tIiwiaWF0IjoxNjkyMTk5Mzc3LCJleHAiOjE2OTIyMDI5Nzd9.qPfgiKc3k55q4T7QJ9vuOWgDkKL0B_fBOfQGj35ydXY";
   const token_user2 =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MzQiLCJlbWFpbCI6ImFsbGEuZ25hdGtpdkBnbWFpbC5jb20iLCJpYXQiOjE2OTIxNDAxNzgsImV4cCI6MTY5MjE0Mzc3OH0.KM4wRDZ43-ipjYO8FCJDACTZatwSMBNENOWOFtZJoHo";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGRiZTEyODg0N2RmZmEzZmU1MDU0MzQiLCJlbWFpbCI6ImFsbGEuZ25hdGtpdkBnbWFpbC5jb20iLCJpYXQiOjE2OTIxOTQxNjYsImV4cCI6MTY5MjE5Nzc2Nn0.1JocEHj381MbAynUUvz5YggCB3VDPjjTqXjZ69tWMKY";
   const user1 = {
     _id: "64dbe128847dffa3fe50542a",
     firstName: "Santosh",
@@ -129,13 +129,16 @@ export const MyAppContextProvider = ({ children }) => {
     __v: 0,
   };
 
+  const [user, setUser] = useState(user1);
+
   return (
     <MyAppContext.Provider
       value={{
-        user: user2,
+        user: user,
         messageApi: messageApi,
         contextHolder: contextHolder,
-        token: token_user2,
+        token: token_user1,
+        updateUser: setUser,
       }}
     >
       {children}

@@ -5,21 +5,15 @@ import { MyAppContext } from "../../provider/MyAppProvider";
 
 const UpcomingPaymentsScene = () => {
   const [upcomingPayments, setUpcomingPayments] = useState();
-  const {
-    token,
-    user: { _id },
-  } = useContext(MyAppContext);
+  const { token } = useContext(MyAppContext);
 
   const fetchUpcomingPayments = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_UPCOMING_PAYMENTS}/${_id}`,
-      {
-        method: `GET`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch(`${process.env.REACT_APP_UPCOMING_PAYMENTS}`, {
+      method: `GET`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
     console.log(data);
     setUpcomingPayments(data);

@@ -1,0 +1,21 @@
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: lightgray;
+  margin-bottom: 8px;
+
+}
+
+.detail-row p {
+  margin-bottom: 8px;
+}
+
+.detail-row div p:last-child {
+  margin-bottom: 0px;
+}
+
+.detail-row > p {
+  font-size: 16px;
+}

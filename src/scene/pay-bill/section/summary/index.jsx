@@ -45,7 +45,7 @@ const PayBillSummarySection = ({ payBillInfo, setCurrentSection }) => {
   const sendSplitHandler = async () => {
     console.log(process.env.REACT_APP_PAY_BILL, _id);
     try {
-      const response = await fetch(`${process.env.REACT_APP_PAY_BILL}/${_id}`, {
+      const response = await fetch(`${process.env.REACT_APP_PAY_BILL}`, {
         method: `POST`,
         body: JSON.stringify(payBillBody),
         headers: {

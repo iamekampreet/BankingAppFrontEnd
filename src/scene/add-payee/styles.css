@@ -1,0 +1,10 @@
+.add-payee {
+  max-width: 80%;
+  margin: 32px auto;
+}
+
+.add-payee h2 {
+  text-align: center;
+  font-size: 24px;
+}
+
