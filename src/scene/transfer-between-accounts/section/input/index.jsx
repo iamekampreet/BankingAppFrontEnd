@@ -1,4 +1,6 @@
 import { Alert, Button, DatePicker, Form, Input, Select, Space } from "antd";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 import { useContext, useState } from "react";
 import dayjs from "dayjs";
 
@@ -6,9 +8,9 @@ import "./styles.css";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import { getAccountLabel } from "../../../../utils/utils";
 
-const PayBillInputSection = ({
-  payBillInfo,
-  setPayBillInfo,
+const TransferBetweenAccountsInputSection = ({
+  transferBetweenAccountsInfo,
+  setTransferBetweenAccountsInfo,
   setCurrentSection,
 }) => {
   const [errorDescription, setErrorDescription] = useState();
@@ -21,21 +23,17 @@ const PayBillInputSection = ({
     console.log(values);
 
     setCurrentSection(`summary`);
-    setPayBillInfo(values);
+    setTransferBetweenAccountsInfo(values);
   };
 
   const updateValues = (values) => {
-    console.log("New value", values);
-    setPayBillInfo(values);
+    setTransferBetweenAccountsInfo(values);
   };
 
   const disabledDate = (current) => {
     // Can not select days before today and today
     return current < dayjs().startOf("day");
   };
-
-  console.log(`===!${JSON.stringify(payBillInfo)}`);
-  console.log(JSON.parse(payBillInfo?.from ?? `{}`));
 
   return (
     <>
@@ -56,7 +54,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="From"
           name="from"
-          initialValue={payBillInfo?.from}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -84,7 +82,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="To"
           name="to"
-          initialValue={payBillInfo?.to}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -94,15 +92,17 @@ const PayBillInputSection = ({
         >
           <Select
             showSearch
-            placeholder="To which payee?"
-            options={user.payee.map((payee) => {
+            placeholder="To which account?"
+            options={user.accounts.map((account) => {
+              const displayStr = `${getAccountLabel(account.accountType)} - (#${
+                account.accountNumber
+              })`;
               return {
                 value: JSON.stringify({
-                  payeeId: payee.payeeId,
-                  accountNumber: payee.accountNumber,
-                  displayName: payee.displayName,
-                }).trim(),
-                label: `${payee.displayName} - [${payee.description}]`,
+                  displayStr: displayStr,
+                  accountNumber: account.accountNumber,
+                }),
+                label: displayStr,
               };
             })}
           />
@@ -110,7 +110,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Amount"
           name="amount"
-          initialValue={payBillInfo?.amount}
+          initialValue={transferBetweenAccountsInfo?.amount}
           rules={[
             {
               required: true,
@@ -123,7 +123,6 @@ const PayBillInputSection = ({
         <Form.Item
           label="Date"
           name="date"
-          initialValue={payBillInfo?.date}
           rules={[
             {
               required: true,
@@ -142,7 +141,7 @@ const PayBillInputSection = ({
         <Form.Item
           label="Frequency"
           name="frequency"
-          initialValue={payBillInfo?.frequency}
+          initialValue={transferBetweenAccountsInfo?.accountNumber}
           rules={[
             {
               required: true,
@@ -170,4 +169,4 @@ const PayBillInputSection = ({
   );
 };
 
-export default PayBillInputSection;
+export default TransferBetweenAccountsInputSection;
