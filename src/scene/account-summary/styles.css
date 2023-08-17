@@ -8,7 +8,7 @@ h3#bankAccountsHeading {
 }
 
 .totalContainerAccSum {
-  float: inline-end;
+  float: right;
 }
 .cadUpperScript {
   font-size: small;
@@ -19,7 +19,7 @@ h3#bankAccountsHeading {
 }
 
 .accountBalanceValAccSum {
-  float: inline-end;
+  float: right;
 }
 
 .h3Underline {

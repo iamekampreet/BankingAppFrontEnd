@@ -1,4 +1,5 @@
 import { useCallback, useContext } from "react";
+import { useNavigate } from "react-router";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import Button from "../../../../components/button";
 import "./styles.css";
@@ -11,7 +12,15 @@ const Header = () => {
     return formattedDate;
   }, []);
 
-  const { user } = useContext(MyAppContext);
+  const { user, setToken, updateUser } = useContext(MyAppContext);
+
+  const navigate = useNavigate();
+
+  const signoutClickHandler = () => {
+    setToken(null);
+    updateUser(null);
+    navigate("/");
+  };
 
   return (
     <>
@@ -38,7 +47,12 @@ const Header = () => {
               />
               <div>{user.displayName}</div>
             </div>
-            <Button color="secondary" title="Sign Out" icon="lock_icon.png" />
+            <Button
+              color="secondary"
+              title="Sign Out"
+              icon="lock_icon.png"
+              onClick={signoutClickHandler}
+            />
           </div>
         </div>
 

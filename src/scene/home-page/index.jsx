@@ -1,9 +1,12 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router";
 import Button from "../../components/button";
 // import ipadImg from "/images/ipad-lineup-bnr-img.png";
 import "./styles.css";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const getFormattedDate = useCallback(() => {
     const options = { month: "long", day: "numeric", year: "numeric" };
     const currentDate = new Date();
@@ -26,7 +29,12 @@ const HomePage = () => {
           </div>
 
           <div className="header-flex">
-            <Button color="secondary" title="Login" icon="lock_icon.png" />
+            <Button
+              color="secondary"
+              title="Login"
+              icon="lock_icon.png"
+              onClick={() => navigate("/auth")}
+            />
           </div>
         </div>
 

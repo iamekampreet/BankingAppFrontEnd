@@ -7,7 +7,7 @@ const PayBillScene = () => {
 
   const [currentSection, setCurrentSection] = useState(`input`);
 
-  return currentSection == `input` ? (
+  return currentSection === `input` ? (
     <PayBillInputSection
       setCurrentSection={setCurrentSection}
       setPayBillInfo={setPayBillInfo}

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./styles.css";
 
 import Input from "../../../../components/formElements/Input";
 import Button from "../../../../components/formElements/Button";
+import { MyAppContext } from "../../../../provider/MyAppProvider";
 
 const SignupSection = (props) => {
+  const context = useContext(MyAppContext);
+
   const navigate = useNavigate();
 
   const [debitCard, setDebitCard] = useState("");
@@ -44,12 +47,11 @@ const SignupSection = (props) => {
       }
 
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/signup`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            debitCard: debitCard,
             lastName: lastName,
             email: email,
             password: password,
@@ -57,12 +59,17 @@ const SignupSection = (props) => {
         }
       );
 
+      // debitCard: debitCard,
       const responseData = await response.json();
 
       if (!response.ok) {
         throw new Error(responseData.message);
       }
 
+      context.setToken(responseData.token);
+      context.updateUser(responseData.user);
+
+      console.log(context);
       console.log(responseData);
     } catch (err) {
       setError("Error: " + err.message);

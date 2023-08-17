@@ -129,7 +129,7 @@ export const MyAppContextProvider = ({ children }) => {
     __v: 0,
   };
 
-  const [user, setUser] = useState(user1);
+  const [user, setUser] = useState();
   const [token, setToken] = useState(token_user1);
 
   return (
