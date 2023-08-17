@@ -22,7 +22,7 @@ const Header = () => {
 
   const signoutClickHandler = () => {
     clearUserAndTokenFromStorage();
-    navigate("/");
+    navigate("/auth");
   };
 
   return (
