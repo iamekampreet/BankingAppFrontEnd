@@ -13,7 +13,7 @@
   position: fixed;
   text-align: center;
   padding-top: 40vh;
-  /* animation: slideInViewportLogoContainer 2s ease-out 1s both; */
+  animation: slideInViewportLogoContainer 2s ease-out 1s both;
 }
 
 #logoContainer > h1 {
@@ -32,22 +32,10 @@
   width: 50vw;
   position: fixed;
   right: 0px;
-  /* animation: slideInViewportInputContainer 2s ease-out 1s both; */
+  animation: slideInViewportInputContainer 2s ease-out 1s both;
   background-color: white;
   text-align: center;
 }
-
-/* 
-  /* animation: 4s ease-out slideInViewport 1s both; 
-@keyframes slideInViewport {
-  from {
-    background-position: 0px 0px;
-  }
-  to {
-    background-position: -50% 0;
-  }
-}
-*/
 
 @keyframes slideInViewportLogoContainer {
   from {
