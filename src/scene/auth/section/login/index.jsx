@@ -5,9 +5,10 @@ import "./styles.css";
 
 import Input from "../../../../components/formElements/Input";
 import Button from "../../../../components/formElements/Button";
+import { saveUserAndTokenToStorage } from "../../../../utils/utils";
 
 const LoginSection = (props) => {
-  const context = useContext(MyAppContext);
+  const { contextHolder } = useContext(MyAppContext);
 
   const navigate = useNavigate();
 
@@ -44,8 +45,7 @@ const LoginSection = (props) => {
         throw new Error(responseData.message);
       }
 
-      context.setToken(responseData.token);
-      context.updateUser(responseData.user);
+      saveUserAndTokenToStorage({ ...responseData });
     } catch (err) {
       setError("Error: " + err.message);
       console.log(err);
@@ -58,6 +58,7 @@ const LoginSection = (props) => {
   return (
     <>
       <form onSubmit={loginFormSubmitHandler}>
+        {contextHolder}
         <Input
           id="username"
           label="Username / Email"

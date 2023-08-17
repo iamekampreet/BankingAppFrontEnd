@@ -3,10 +3,17 @@ import "./styles.css";
 import { MyAppContext } from "../../provider/MyAppProvider";
 import HistoryTransactionItem from "./components/history-transaction-item";
 import { Collapse } from "antd";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+} from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const SplitHistoryScene = () => {
   const [splitHistoryInfo, setSplitHistoryInfo] = useState();
-  const { token, messageApi } = useContext(MyAppContext);
+  const { messageApi } = useContext(MyAppContext);
+  const { token } = getUserAndTokenFromStorage();
+  const navigate = useNavigate();
 
   const fetchSplitHistory = async () => {
     try {
@@ -24,8 +31,12 @@ const SplitHistoryScene = () => {
       const jsonResponse = await response.json();
       if (response.ok) {
         setSplitHistoryInfo(jsonResponse);
-      } else if (response.status === 401) {
+      } else {
         messageApi.info(jsonResponse.message);
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       console.log("=====");

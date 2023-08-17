@@ -2,10 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import RequestedSplitRow from "./components/requested-split-row";
 import { MyAppContext } from "../../provider/MyAppProvider";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+  updateUserInStorage,
+} from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const RequestedSplitScene = () => {
   const [requestedSplits, setRequestSplits] = useState([]);
-  const { token, messageApi } = useContext(MyAppContext);
+  const { messageApi } = useContext(MyAppContext);
+  const navigate = useNavigate();
+  const { token } = getUserAndTokenFromStorage();
 
   const fetchRequestedSplit = async () => {
     try {
@@ -23,8 +31,12 @@ const RequestedSplitScene = () => {
       const jsonResponse = await response.json();
       if (response.ok) {
         setRequestSplits(jsonResponse);
-      } else if (response.status === 401) {
+      } else {
         messageApi.info(jsonResponse.message);
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       console.log("=====");
@@ -53,10 +65,16 @@ const RequestedSplitScene = () => {
           },
         }
       );
-      const statusMessage = await response.json();
-      messageApi.info(statusMessage.message);
+      const jsonResponse = await response.json();
+      messageApi.info(jsonResponse.message);
       if (response.ok) {
+        console.log("compelete transaction", jsonResponse.user);
+        updateUserInStorage(jsonResponse.user);
         await fetchRequestedSplit();
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       console.log("=====");

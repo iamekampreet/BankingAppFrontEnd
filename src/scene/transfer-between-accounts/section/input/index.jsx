@@ -6,7 +6,10 @@ import dayjs from "dayjs";
 
 import "./styles.css";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
-import { getAccountLabel } from "../../../../utils/utils";
+import {
+  getAccountLabel,
+  getUserAndTokenFromStorage,
+} from "../../../../utils/utils";
 
 const TransferBetweenAccountsInputSection = ({
   transferBetweenAccountsInfo,
@@ -16,7 +19,7 @@ const TransferBetweenAccountsInputSection = ({
   const [errorDescription, setErrorDescription] = useState();
   const [form] = Form.useForm();
 
-  const { user } = useContext(MyAppContext);
+  const { user } = getUserAndTokenFromStorage();
   // console.log(user);
 
   const onFinishHandler = (values) => {

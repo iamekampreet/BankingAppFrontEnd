@@ -5,14 +5,16 @@ import { useContext, useState } from "react";
 
 import "./styles.css";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
-import { getAccountLabel } from "../../../../utils/utils";
+import {
+  getAccountLabel,
+  getUserAndTokenFromStorage,
+} from "../../../../utils/utils";
 
 const InputSection = ({ setCurrentSection, setSplitInfo, splitInfo }) => {
   const [errorDescription, setErrorDescription] = useState();
   const [form] = Form.useForm();
 
-  const { user } = useContext(MyAppContext);
-  console.log(user);
+  const { user } = getUserAndTokenFromStorage();
 
   const onFinishHandler = (values) => {
     console.log(values);

@@ -3,26 +3,19 @@ import NormalInfoSummary from "../../../split-bill/component/normal-info-summary
 import { useContext } from "react";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import { Button } from "antd";
-import { getFrequencyLabel } from "../../../../utils/utils";
+import {
+  clearUserAndTokenFromStorage,
+  getFrequencyLabel,
+  getUserAndTokenFromStorage,
+  updateUserInStorage,
+} from "../../../../utils/utils";
 
 import "./styles.css";
 
 const PayBillSummarySection = ({ payBillInfo, setCurrentSection }) => {
   const navigate = useNavigate();
-  const {
-    messageApi,
-    token,
-    user: { _id },
-  } = useContext(MyAppContext);
-
-  // console.log(JSON.stringify(payBillInfo));
-  // const payBillInfo = {
-  //   from: '{"displayStr":"SAVING - (#2)","accountNumber":2}',
-  //   to: '{"payeeId":"64d2f77d0971536e27aae613","accountNumber":10,"displayName":"CRA(Revenue) Tax Amount Owing"}',
-  //   amount: "10000",
-  //   date: "2023-08-09T19:56:37.412Z",
-  //   frequency: 0,
-  // };
+  const { messageApi } = useContext(MyAppContext);
+  const { token, user } = getUserAndTokenFromStorage();
 
   const from = JSON.parse(payBillInfo.from);
   const to = JSON.parse(payBillInfo.to);
@@ -43,7 +36,7 @@ const PayBillSummarySection = ({ payBillInfo, setCurrentSection }) => {
   };
 
   const sendSplitHandler = async () => {
-    console.log(process.env.REACT_APP_PAY_BILL, _id);
+    console.log(process.env.REACT_APP_PAY_BILL);
     try {
       const response = await fetch(`${process.env.REACT_APP_PAY_BILL}`, {
         method: `POST`,
@@ -53,10 +46,16 @@ const PayBillSummarySection = ({ payBillInfo, setCurrentSection }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const message = await response.json();
-      messageApi.info(message.message);
+      const jsonResponse = await response.json();
       if (response.ok) {
-        navigate("/");
+        updateUserInStorage(jsonResponse.user);
+        console.log(jsonResponse.user);
+        navigate("/move-money/upcoming-payments");
+      }
+      messageApi.info(jsonResponse.message);
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       messageApi.info(ex.message);

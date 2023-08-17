@@ -1,15 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./section/header";
 import MainMenu from "./section/main-menu/MainMenu";
 
 import "./styles.css";
 import ImageContainer from "./section/image-container";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppConfigContext } from "antd/es/app/context";
 import { MyAppContext } from "../../provider/MyAppProvider";
 
+
 const RootPageScene = () => {
-  const { contextHolder } = useContext(MyAppContext);
+  const { contextHolder, messageApi } = useContext(MyAppContext);
 
   return (
     <div className="root-container">

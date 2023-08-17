@@ -3,6 +3,10 @@ import { useNavigate } from "react-router";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import Button from "../../../../components/button";
 import "./styles.css";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+} from "../../../../utils/utils";
 
 const Header = () => {
   const getFormattedDate = useCallback(() => {
@@ -12,13 +16,12 @@ const Header = () => {
     return formattedDate;
   }, []);
 
-  const { user, setToken, updateUser } = useContext(MyAppContext);
+  const { user } = getUserAndTokenFromStorage();
 
   const navigate = useNavigate();
 
   const signoutClickHandler = () => {
-    setToken(null);
-    updateUser(null);
+    clearUserAndTokenFromStorage();
     navigate("/");
   };
 

@@ -1,12 +1,56 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { MyAppContext } from "../../provider/MyAppProvider";
-import { getAccountLabel, getCardLabel } from "../../utils/utils";
+import {
+  getAccountLabel,
+  getCardLabel,
+  getUserAndTokenFromStorage,
+} from "../../utils/utils";
+import {
+  clearUserAndTokenFromStorage,
+  updateUserInStorage,
+} from "../../utils/utils";
 
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const AccountSummaryScene = () => {
-  const { user } = useContext(MyAppContext);
+  const [refresh, setRefresh] = useState();
+  let { user } = getUserAndTokenFromStorage();
+  const { messageApi } = useContext(MyAppContext);
+  const navigate = useNavigate();
+
+  const updateUser = async () => {
+    const { token } = getUserAndTokenFromStorage();
+    try {
+      console.log(process.env.REACT_APP_USER_INFO, token);
+      const response = await fetch(`${process.env.REACT_APP_USER_INFO}`, {
+        method: `GET`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const jsonResponse = await response.json();
+      console.log("In root page", jsonResponse);
+      if (response.ok) {
+        console.log("Updaing");
+        updateUserInStorage(jsonResponse.user);
+        setRefresh(!refresh);
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
+      }
+    } catch (ex) {
+      console.log("=====");
+      console.log(ex);
+      messageApi.info(ex.message);
+    }
+  };
+
+  useEffect(() => {
+    updateUser();
+  }, []);
 
   return (
     <div id="accountSummaryMainContainer">

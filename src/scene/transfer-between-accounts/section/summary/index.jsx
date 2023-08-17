@@ -3,7 +3,13 @@ import NormalInfoSummary from "../../../split-bill/component/normal-info-summary
 import { useContext } from "react";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
 import { Button } from "antd";
-import { getFrequencyLabel } from "../../../../utils/utils";
+import {
+  clearUserAndTokenFromStorage,
+  getFrequencyLabel,
+  getUserAndTokenFromStorage,
+  saveUserAndTokenToStorage,
+  updateUserInStorage,
+} from "../../../../utils/utils";
 
 import "./styles.css";
 
@@ -12,11 +18,12 @@ const TransferBetweenAccountsSummarySection = ({
   setCurrentSection,
 }) => {
   const navigate = useNavigate();
+  const { messageApi } = useContext(MyAppContext);
+
   const {
-    messageApi,
-    token,
     user: { _id },
-  } = useContext(MyAppContext);
+    token,
+  } = getUserAndTokenFromStorage();
 
   const from = JSON.parse(transferBetweenAccountsInfo.from);
   const to = JSON.parse(transferBetweenAccountsInfo.to);
@@ -48,10 +55,15 @@ const TransferBetweenAccountsSummarySection = ({
           },
         }
       );
-      const message = await response.json();
-      messageApi.info(message.message);
+      const jsonResponse = await response.json();
+      messageApi.info(jsonResponse.message);
       if (response.status === 200) {
         navigate("/");
+        updateUserInStorage(jsonResponse.user);
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       messageApi.info(ex.message);

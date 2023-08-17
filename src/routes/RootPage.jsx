@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import RootPageScene from "../scene/root-page";
-import { MyAppContext } from "../provider/MyAppProvider";
 import HomePage from "../scene/home-page";
+import { getUserAndTokenFromStorage } from "../utils/utils";
 
 const RootPage = () => {
-  const { user } = useContext(MyAppContext);
+  const { user } = getUserAndTokenFromStorage();
 
   return user ? <RootPageScene /> : <HomePage />;
 };

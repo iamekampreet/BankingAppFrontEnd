@@ -1,10 +1,12 @@
 import { Alert, Button, DatePicker, Form, Input, Select, Space } from "antd";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import dayjs from "dayjs";
 
 import "./styles.css";
-import { MyAppContext } from "../../../../provider/MyAppProvider";
-import { getAccountLabel } from "../../../../utils/utils";
+import {
+  getAccountLabel,
+  getUserAndTokenFromStorage,
+} from "../../../../utils/utils";
 
 const PayBillInputSection = ({
   payBillInfo,
@@ -14,7 +16,7 @@ const PayBillInputSection = ({
   const [errorDescription, setErrorDescription] = useState();
   const [form] = Form.useForm();
 
-  const { user } = useContext(MyAppContext);
+  const { user } = getUserAndTokenFromStorage();
   // console.log(user);
 
   const onFinishHandler = (values) => {

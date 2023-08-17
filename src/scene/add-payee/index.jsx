@@ -3,6 +3,12 @@ import DetailRow from "./components/detail-row";
 import "./styles.css";
 import { Button, Form, Input, Modal } from "antd";
 import { MyAppContext } from "../../provider/MyAppProvider";
+import { useNavigate } from "react-router-dom";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+  updateUserInStorage,
+} from "../../utils/utils";
 
 const AddPayeeScene = () => {
   const [payeeList, setPayeeList] = useState();
@@ -11,10 +17,12 @@ const AddPayeeScene = () => {
   const [description, setDescription] = useState();
   const [selectedPayeeInfo, setSelectedPayeeInfo] = useState();
 
-  const { token, messageApi, updateUser } = useContext(MyAppContext);
+  const { messageApi } = useContext(MyAppContext);
+  const navigate = useNavigate();
 
   const fetchPayeeList = async () => {
     try {
+      const { token } = getUserAndTokenFromStorage();
       console.log(process.env.REACT_APP_PAY_BILL_ALL_PAYEE, token);
       const response = await fetch(
         `${process.env.REACT_APP_PAY_BILL_ALL_PAYEE}`,
@@ -32,6 +40,10 @@ const AddPayeeScene = () => {
       } else {
         messageApi.info(jsonResponse.message);
       }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
+      }
     } catch (ex) {
       console.log("=====");
       console.log(ex);
@@ -48,6 +60,7 @@ const AddPayeeScene = () => {
     };
 
     try {
+      const { token } = getUserAndTokenFromStorage();
       console.log(process.env.REACT_APP_PAY_BILL_UPDATE_USER_PAYEE, token);
       const response = await fetch(
         `${process.env.REACT_APP_PAY_BILL_UPDATE_USER_PAYEE}`,
@@ -64,10 +77,14 @@ const AddPayeeScene = () => {
       if (response.ok) {
         console.log(jsonResponse);
         messageApi.info("Payee Added to list");
-        updateUser(jsonResponse);
+        updateUserInStorage(jsonResponse);
         //setPayeeList(jsonResponse);
       } else {
         messageApi.info(jsonResponse.message);
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
       setIsModelOpen(false);
     } catch (ex) {

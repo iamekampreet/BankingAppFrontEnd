@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import LoginSection from "./section/login";
 import SignupSection from "./section/signup";
 import "./styles.css";
+import { MyAppContext } from "../../provider/MyAppProvider";
 
 const AuthScene = () => {
   const [isLogin, setIsLogin] = useState(1);
+  const { contextHolder } = useContext(MyAppContext);
 
   const changeLoginMode = () => {
     setIsLogin((isLogin) => !isLogin);
@@ -13,6 +15,7 @@ const AuthScene = () => {
 
   return (
     <div id="containerBig">
+      {contextHolder}
       <div id="logoContainer">
         <img src="/images/rbc_icon.svg" alt="RBC logo" width="8%" />
 

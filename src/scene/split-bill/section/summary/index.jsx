@@ -5,6 +5,10 @@ import "./styles.css";
 import { Button, message } from "antd";
 import { useContext } from "react";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+} from "../../../../utils/utils";
 
 const SplitBillSummary = ({ splitInfo, setCurrentSection }) => {
   // const splitInfo = JSON.parse(
@@ -12,7 +16,8 @@ const SplitBillSummary = ({ splitInfo, setCurrentSection }) => {
   // );
   console.log(JSON.stringify(splitInfo));
   const navigate = useNavigate();
-  const { messageApi, token } = useContext(MyAppContext);
+  const { messageApi } = useContext(MyAppContext);
+  const { token } = getUserAndTokenFromStorage();
 
   const perPersonSplit = (
     splitInfo.amount /
@@ -37,7 +42,11 @@ const SplitBillSummary = ({ splitInfo, setCurrentSection }) => {
       const message = await response.json();
       messageApi.info(message.message);
       if (response.ok) {
-        navigate("/");
+        navigate("/move-money/split-request-history");
+      }
+      if (response.status === 401) {
+        clearUserAndTokenFromStorage();
+        navigate("/auth");
       }
     } catch (ex) {
       messageApi.info(ex.message);

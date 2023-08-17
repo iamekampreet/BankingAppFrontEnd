@@ -6,6 +6,7 @@ import "./styles.css";
 import Input from "../../../../components/formElements/Input";
 import Button from "../../../../components/formElements/Button";
 import { MyAppContext } from "../../../../provider/MyAppProvider";
+import { saveUserAndTokenToStorage } from "../../../../utils/utils";
 
 const SignupSection = (props) => {
   const context = useContext(MyAppContext);
@@ -66,8 +67,7 @@ const SignupSection = (props) => {
         throw new Error(responseData.message);
       }
 
-      context.setToken(responseData.token);
-      context.updateUser(responseData.user);
+      saveUserAndTokenToStorage({ ...responseData });
 
       console.log(context);
       console.log(responseData);

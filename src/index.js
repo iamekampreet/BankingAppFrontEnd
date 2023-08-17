@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { ConfigProvider } from "antd";
+import { MyAppContextProvider } from "./provider/MyAppProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RootPage from "./routes/RootPage";
 import AccountSummary from "./routes/AccountSummary";
 import SplitBill from "./routes/SplitBill";
 import TransferBetweenAccounts from "./routes/TransferBetweenAccounts";
-import { MyAppContextProvider } from "./provider/MyAppProvider";
 import PayBill from "./routes/PayBill";
 import InteracTransfer from "./routes/InteracTransfer";
 import Settings from "./routes/Settings";
@@ -16,6 +16,7 @@ import UpcomingPayments from "./routes/UpcomingPayments";
 import SplitHistory from "./routes/SplitHistory";
 import RequestedSplit from "./routes/RequestedSplit";
 import Auth from "./routes/Auth";
+import HomePage from "./scene/home-page";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -58,6 +59,7 @@ root.render(
               <Route path="/settings" element={<Settings />} />
             </Route>
             <Route path="/auth" element={<Auth />} />
+            <Route path="/home" element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </MyAppContextProvider>

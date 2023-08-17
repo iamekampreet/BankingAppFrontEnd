@@ -3,12 +3,19 @@ import UpcomingPaymentRow from "./components/upcoming-payment-row";
 import "./styles.css";
 import { MyAppContext } from "../../provider/MyAppProvider";
 import { Button, Modal } from "antd";
+import {
+  clearUserAndTokenFromStorage,
+  getUserAndTokenFromStorage,
+} from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const UpcomingPaymentsScene = () => {
   const [upcomingPayments, setUpcomingPayments] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState();
-  const { token, messageApi } = useContext(MyAppContext);
+  const { messageApi } = useContext(MyAppContext);
+  const { token } = getUserAndTokenFromStorage();
+  const navigate = useNavigate();
 
   const fetchUpcomingPayments = async () => {
     const response = await fetch(`${process.env.REACT_APP_UPCOMING_PAYMENTS}`, {
@@ -22,6 +29,10 @@ const UpcomingPaymentsScene = () => {
       setUpcomingPayments(jsonResponse);
     } else {
       messageApi.info(jsonResponse.message);
+    }
+    if (response.status === 401) {
+      clearUserAndTokenFromStorage();
+      navigate("/auth");
     }
   };
 
@@ -44,6 +55,10 @@ const UpcomingPaymentsScene = () => {
     setIsModalOpen(false);
     if (response.ok) {
       await fetchUpcomingPayments();
+    }
+    if (response.status === 401) {
+      clearUserAndTokenFromStorage();
+      navigate("/auth");
     }
   };
 
